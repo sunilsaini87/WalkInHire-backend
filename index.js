@@ -22,7 +22,7 @@ app.use(urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(
   cors({
-    origin: true, // Allow all origins
+    origin: process.env.FRONTEND_URL, // Allow all origins
     credentials: true, // Allow credentials (cookies, authorization headers) cross-origin
   })
 ); // Allows requests from all origins
