@@ -22,12 +22,20 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(urlencoded({ extended: true }));
 app.use(cookieParser());
 
+// const corsOptions = {
+//   origin: process.env.F_URL,
+//   credentials: true,
+// };
+// app.use(cors(corsOptions));
 const corsOptions = {
-  origin: process.env.F_URL,
-  credentials: true,
+  origin: function (origin, callback) {
+    // Allow all origins by dynamically setting the Access-Control-Allow-Origin header
+    callback(null, origin);
+  },
+  credentials: true, // Allow cookies to be sent
 };
-app.use(cors(corsOptions));
 
+app.use(cors(corsOptions));
 // api's route
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/company", companyRoute);
