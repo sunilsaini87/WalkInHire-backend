@@ -23,8 +23,8 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: true,
-    credentials: true,
+    origin: "https://walk-in-hire.vercel.app", //frontend origin
+    credentials: true, // Enable cookies and other credentials
   })
 );
 // api's route
