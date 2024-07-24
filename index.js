@@ -20,13 +20,13 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(urlencoded({ extended: true }));
 app.use(cookieParser());
+
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL, // Allow all origins
-    credentials: true, // Allow credentials (cookies, authorization headers) cross-origin
+    origin: true,
+    credentials: true,
   })
-); // Allows requests from all origins
-
+);
 // api's route
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/company", companyRoute);
