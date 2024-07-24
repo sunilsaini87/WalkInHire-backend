@@ -10,7 +10,6 @@ import jobRoute from "./routes/job.route.js";
 import applicationRoute from "./routes/application.route.js";
 
 dotenv.config();
-
 // connect db
 connectDB();
 
@@ -23,28 +22,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(urlencoded({ extended: true }));
 app.use(cookieParser());
 
-app.use(
-  cors({
-    origin: "https://walk-in-hire.vercel.app", //frontend origin
-    credentials: true, // Enable cookies and other credentials
-  })
-);
-
-// Remove redundant custom middleware since `cors` middleware handles it
-/*
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://walk-in-hire.vercel.app");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
-*/
-
-app.get("/api/v1/company/getcompany", (req, res) => {
-  res.json({ message: "CORS policy works!" });
-});
+const corsOptions = {
+  origin: process.env.F_URL,
+  credentials: true,
+};
+app.use(cors(corsOptions));
 
 // api's route
 app.use("/api/v1/user", userRoute);
